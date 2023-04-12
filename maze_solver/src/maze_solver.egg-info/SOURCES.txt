@@ -5,3 +5,7 @@ src/maze_solver.egg-info/SOURCES.txt
 src/maze_solver.egg-info/dependency_links.txt
 src/maze_solver.egg-info/top_level.txt
 src/maze_solver/models/__init__.py
+src/maze_solver/models/border.py
+src/maze_solver/models/maze.py
+src/maze_solver/models/role.py
+src/maze_solver/models/square.py
