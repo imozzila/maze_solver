@@ -1,13 +1,23 @@
 from dataclasses import dataclass
 from functools import cached_property
+from pathlib import Path
 from typing import Iterator
 
 from maze_solver.models.role import Role
 from maze_solver.models.square import Square
+from maze_solver.persistence.serializer import (
+    dump_squares,
+    load_squares,
+
+)
 
 @dataclass(frozen=True)
 class Maze:
     squares: tuple[Square, ...]
+
+    @classmethod
+    def load(cls, path: Path) -> 'Maze':
+        return Maze(tuple(load_squares(path)))
 
     def __post_init__(self) -> None:
         validate_indices(self)
@@ -59,3 +69,6 @@ def validate_exit(maze: Maze) -> None:
     assert 1 == sum(
         1 for square in maze if square.role is Role.EXIT
     ), "Must be exactly one exit"
+
+def dump(self, path: Path) -> None:
+    dump_squares(self.width, self.height, self.squares, path)
