@@ -26,6 +26,7 @@ class Solution:
         return len(self.squares)
     
 def validate_corridor(current: Square, following: Square) -> Square:
+    print(current, following)
     assert any([
         current.row == following.row,
         current.column == following.column

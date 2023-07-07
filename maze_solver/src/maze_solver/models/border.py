@@ -24,4 +24,4 @@ class Border(IntFlag):
     def intersection(self) -> bool:
         return self.bit_count() < 2
 
-        
+ 
