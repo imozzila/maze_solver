@@ -11,6 +11,8 @@ import array as arr
 def DFS(maze: Maze, graph: Graph):
     stack = []
     visited_nodes = []
+    solving_path = []
+    parentMap = {}
     """Depth First Search algorithm.
     Initial State: Entrance
     Goal State: Exit
@@ -23,6 +25,11 @@ def DFS(maze: Maze, graph: Graph):
         print("After",stack)
         if current_node == maze.exit.index:
             print("exit found")
+            child_node = current_node
+            while child_node != maze.entrance.index:
+                solving_path.append(maze.squares[child_node])
+                child_node = parentMap[child_node]
+            solving_path.append(maze.squares[child_node])    
             break
         visited_nodes.append(current_node)
         adjacent_nodes = graph.adjacency_list[current_node]
@@ -31,6 +38,8 @@ def DFS(maze: Maze, graph: Graph):
         not_visited = set(adjacent_nodes).difference(known_nodes)
         for i in not_visited:
             stack.append(i)
+            parentMap[i] = current_node
 
+    return solving_path[::-1]
         
         
